@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>喜杰商行 · 烟酒槟榔综合商行</title>
+<meta name="description" content="喜杰商行——烟、酒、槟榔一站式综合商行，正品渠道、明码实价，支持批发与零售。位于广东省东莞市大朗镇竹山路。">
+<!--
+  ============ 待替换占位说明 ============
+  1. 商行名称：喜杰商行（已按真实店名填写）；
+  2. 电话 / 微信 / 地址 / 营业时间：位于「联系」区块，其中营业时间仍为示例，请按实际调整；
+  3. 文案（关于、主营描述）可按实际情况微调。
+  ========================================
+-->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%239E2B25'/%3E%3Crect x='5' y='5' width='54' height='54' rx='7' fill='none' stroke='%23C9A05C' stroke-width='2.5'/%3E%3Ctext x='32' y='45' font-size='34' text-anchor='middle' fill='%23E3C98F' font-family='serif' font-weight='bold'%3E商%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+/* ===================== 设计令牌 ===================== */
+:root{
+  --ink:#221711;          /* 墨褐 */
+  --ink-2:#2C1E16;        /* 墨褐-浅 */
+  --ink-3:#3A2A20;        /* 墨褐-更浅 */
+  --red:#9E2B25;          /* 漆红 */
+  --red-deep:#7C1F1B;     /* 深漆红 */
+  --red-bright:#B23A30;   /* 亮漆红 */
+  --gold:#C9A05C;         /* 鎏金 */
+  --gold-soft:#E3C98F;    /* 鎏金-浅 */
+  --paper:#F5EEDF;        /* 宣纸 */
+  --paper-2:#EDE3CE;      /* 宣纸-深 */
+  --text-dark:#2B211B;    /* 深区文字 */
+  --text-mid:#6B5A47;     /* 中间文字 */
+  --text-light:#EFE6D3;   /* 浅区文字 */
+  --text-light-dim:#C9BBA0;
+  --serif:"Noto Serif SC","Songti SC","SimSun",serif;
+  --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --shadow-lg:0 24px 60px rgba(34,23,17,.35);
+  --shadow-sm:0 8px 24px rgba(34,23,17,.18);
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  font-family:var(--sans);
+  background:var(--ink);
+  color:var(--text-dark);
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.container{width:min(1120px,92vw);margin-inline:auto}
+section{position:relative}
+
+/* ===================== 通用组件 ===================== */
+.section{padding:96px 0}
+.sec-head{text-align:center;margin-bottom:56px}
+.sec-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  color:var(--gold);font-size:14px;letter-spacing:.35em;
+  font-family:var(--serif);font-weight:600;
+}
+.sec-tag::before,.sec-tag::after{content:"";width:26px;height:1px;background:var(--gold);opacity:.7}
+.sec-title{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(1.9rem,4.2vw,2.7rem);
+  color:var(--text-dark);margin-top:14px;letter-spacing:.08em;
+}
+.sec-title.light{color:var(--text-light)}
+.sec-sub{color:var(--text-mid);margin-top:12px;font-size:15.5px;letter-spacing:.05em}
+.sec-sub.light{color:var(--text-light-dim)}
+.on-dark{background:linear-gradient(180deg,var(--ink) 0%,var(--ink-2) 100%);color:var(--text-light)}
+.on-dark .sec-title{color:var(--text-light)}
+.on-dark .sec-sub{color:var(--text-light-dim)}
+
+/* 印章按钮 */
+.btn-seal{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 30px;border-radius:var(--radius);
+  background:var(--red);color:#F7EFDD;
+  font-family:var(--serif);font-weight:700;font-size:16px;letter-spacing:.2em;
+  border:1px solid var(--gold);cursor:pointer;
+  box-shadow:var(--shadow-sm);
+  transition:transform .25s ease,box-shadow .25s ease,background .25s ease;
+}
+.btn-seal:hover{background:var(--red-bright);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.btn-seal.ghost{background:transparent;color:var(--gold-soft);border-color:var(--gold)}
+.btn-seal.ghost:hover{background:rgba(201,160,92,.12);color:#F7EFDD}
+
+/* ===================== 顶部导航 ===================== */
+.nav{
+  position:fixed;inset:0 0 auto 0;z-index:100;
+  background:rgba(34,23,17,.55);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(201,160,92,.22);
+  transition:background .3s ease,box-shadow .3s ease;
+}
+.nav.scrolled{background:rgba(28,18,13,.92);box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-seal{
+  width:42px;height:42px;flex:none;
+  display:grid;place-items:center;
+  background:var(--red);border:1.5px solid var(--gold);border-radius:9px;
+  color:var(--gold-soft);font-family:var(--serif);font-weight:900;font-size:22px;
+}
+.brand-name{font-family:var(--serif);font-weight:700;font-size:19px;color:var(--text-light);letter-spacing:.18em}
+.brand-name small{display:block;font-family:var(--sans);font-weight:400;font-size:11px;letter-spacing:.3em;color:var(--gold);margin-top:1px}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{
+  color:var(--text-light-dim);font-size:15px;letter-spacing:.15em;position:relative;
+  padding:6px 2px;transition:color .25s ease;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--gold);
+  transition:right .3s ease;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--gold-soft)}
+.nav-links a:hover::after,.nav-links a.active::after{right:0}
+
+/* ===================== Hero ===================== */
+.hero{
+  min-height:100svh;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;
+  background:var(--ink);
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 50% 20%,rgba(158,43,37,.5) 0%,rgba(34,23,17,.1) 55%),
+    repeating-linear-gradient(45deg,rgba(201,160,92,.05) 0 2px,transparent 2px 26px),
+    linear-gradient(180deg,#2C1E16 0%,var(--ink) 55%,#170E0A 100%);
+}
+.hero-veil{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 50% 42%,rgba(124,31,27,.34) 0%,rgba(34,23,17,.55) 58%,rgba(24,15,11,.92) 100%),
+    linear-gradient(180deg,rgba(24,15,11,.35) 0%,rgba(24,15,11,.15) 40%,rgba(24,15,11,.95) 100%);
+}
+.hero-inner{position:relative;z-index:2;padding:120px 0 90px}
+.hero-top{
+  font-family:var(--serif);color:var(--gold);
+  letter-spacing:.6em;font-size:14px;margin-bottom:26px;
+}
+.hero-top::before,.hero-top::after{content:"—";margin:0 14px;color:var(--gold);opacity:.6}
+.hero-title{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(2.6rem,8vw,5.2rem);
+  color:#F7EFDD;letter-spacing:.1em;line-height:1.2;
+  text-shadow:0 4px 30px rgba(0,0,0,.55);
+}
+.hero-title em{
+  font-style:normal;
+  background:linear-gradient(180deg,var(--gold-soft),var(--gold));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{
+  margin:26px auto 0;max-width:560px;
+  color:var(--text-light-dim);font-size:clamp(15px,2.2vw,17px);
+  letter-spacing:.12em;line-height:2;
+}
+.hero-acts{display:flex;gap:18px;justify-content:center;margin-top:42px;flex-wrap:wrap}
+.hero-seal{
+  position:absolute;right:3vw;top:50%;transform:translateY(-50%);
+  width:86px;height:86px;border:2px solid var(--gold);border-radius:6px;
+  display:grid;place-items:center;color:var(--gold-soft);
+  font-family:var(--serif);font-weight:900;font-size:38px;
+  opacity:.85;box-shadow:inset 0 0 0 5px rgba(201,160,92,.12);
+  writing-mode:vertical-rl;font-size:26px;letter-spacing:.3em;
+}
+.hero-seal span{display:none}
+.scroll-cue{
+  position:absolute;left:50%;bottom:34px;transform:translateX(-50%);
+  z-index:2;color:var(--text-light-dim);font-size:12px;letter-spacing:.4em;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.scroll-cue i{
+  width:1px;height:44px;display:block;
+  background:linear-gradient(180deg,var(--gold),transparent);
+  animation:cue 1.8s ease-in-out infinite;
+}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ===================== 关于 ===================== */
+.about{background:var(--paper)}
+.about-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
+  margin-top:8px;
+}
+.about-card{
+  background:#FBF6EA;border:1px solid rgba(201,160,92,.45);border-radius:var(--radius);
+  padding:34px 28px;text-align:center;position:relative;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.about-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-sm)}
+.about-num{
+  font-family:var(--serif);font-weight:900;font-size:30px;color:var(--red);
+  letter-spacing:.2em;margin-bottom:10px;
+}
+.about-card h3{font-family:var(--serif);font-size:18px;letter-spacing:.1em;margin-bottom:8px}
+.about-card p{font-size:14px;color:var(--text-mid);letter-spacing:.04em}
+.about-para{
+  max-width:720px;margin:56px auto 0;text-align:center;
+  color:var(--text-mid);font-size:16px;letter-spacing:.06em;line-height:2.1;
+}
+.about-para strong{color:var(--red);font-weight:700}
+
+/* ===================== 主营项目 ===================== */
+.products{background:linear-gradient(180deg,var(--ink) 0%,var(--ink-2) 100%)}
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.product-card{
+  background:rgba(245,238,223,.045);
+  border:1px solid rgba(201,160,92,.28);
+  border-radius:var(--radius);overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease;
+}
+.product-card:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:var(--shadow-lg)}
+.product-fig{
+  height:168px;overflow:hidden;position:relative;
+  display:grid;place-items:center;
+  background:
+    radial-gradient(circle at 50% 120%,rgba(158,43,37,.55) 0%,rgba(34,23,17,.05) 70%),
+    repeating-linear-gradient(135deg,rgba(201,160,92,.06) 0 2px,transparent 2px 22px),
+    linear-gradient(160deg,rgba(124,31,27,.55),rgba(34,23,17,.25));
+  border-bottom:1px solid rgba(201,160,92,.28);
+}
+.product-fig .fig-tag{
+  position:absolute;left:16px;top:16px;
+  background:rgba(34,23,17,.78);color:var(--gold-soft);
+  font-family:var(--serif);font-size:13px;letter-spacing:.25em;
+  padding:5px 14px;border-radius:999px;border:1px solid rgba(201,160,92,.5);
+}
+.product-fig .fig-glyph{
+  color:var(--gold-soft);
+  display:grid;place-items:center;gap:8px;
+}
+.product-fig .fig-glyph svg{width:40px;height:40px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.35))}
+.product-fig .fig-glyph span{
+  font-family:var(--serif);font-weight:900;font-size:34px;letter-spacing:.3em;
+  text-indent:.3em;color:#F2E3C2;
+}
+.product-body{padding:26px 24px 28px;display:flex;flex-direction:column;flex:1}
+.product-body h3{font-family:var(--serif);font-weight:900;font-size:24px;color:var(--text-light);letter-spacing:.3em}
+.product-body .sub{color:var(--gold);font-size:14px;letter-spacing:.22em;margin-top:4px}
+.product-body p{color:var(--text-light-dim);font-size:14.5px;letter-spacing:.04em;margin-top:14px;flex:1}
+.product-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.product-tags span{
+  font-size:13px;color:var(--gold-soft);
+  border:1px solid rgba(201,160,92,.4);border-radius:999px;
+  padding:3px 12px;letter-spacing:.1em;
+}
+.product-note{
+  margin-top:18px;font-size:13px;color:#A8987C;letter-spacing:.08em;
+  border-top:1px dashed rgba(201,160,92,.3);padding-top:12px;
+}
+
+/* ===================== 优势 ===================== */
+.features{background:var(--paper)}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feat-item{
+  background:#FBF6EA;border:1px solid rgba(201,160,92,.4);border-radius:var(--radius);
+  padding:30px 26px;display:flex;gap:18px;align-items:flex-start;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.feat-item:hover{transform:translateY(-5px);box-shadow:var(--shadow-sm)}
+.feat-ic{
+  width:48px;height:48px;flex:none;border-radius:10px;
+  background:var(--red);border:1px solid var(--gold);
+  display:grid;place-items:center;color:var(--gold-soft);
+}
+.feat-ic svg{width:24px;height:24px}
+.feat-item h3{font-family:var(--serif);font-size:17px;letter-spacing:.12em;margin-bottom:5px}
+.feat-item p{font-size:13.5px;color:var(--text-mid);letter-spacing:.04em}
+
+/* ===================== 联系 ===================== */
+.contact{background:linear-gradient(180deg,var(--ink-2) 0%,var(--ink) 100%)}
+.contact-box{
+  max-width:760px;margin-inline:auto;
+  background:rgba(245,238,223,.05);
+  border:1px solid rgba(201,160,92,.3);border-radius:var(--radius);
+  padding:48px 44px;
+}
+.contact-row{
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:18px 6px;border-bottom:1px dashed rgba(201,160,92,.25);
+  flex-wrap:wrap;
+}
+.contact-row:last-of-type{border-bottom:none}
+.contact-label{
+  display:flex;align-items:center;gap:12px;
+  color:var(--text-light);font-family:var(--serif);font-size:16px;letter-spacing:.15em;
+}
+.contact-label svg{width:20px;height:20px;color:var(--gold);flex:none}
+.contact-val{color:var(--gold-soft);font-size:16px;letter-spacing:.1em;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.btn-copy{
+  background:none;border:1px solid rgba(201,160,92,.55);border-radius:8px;
+  color:var(--gold-soft);font-size:12.5px;letter-spacing:.15em;
+  padding:5px 14px;cursor:pointer;font-family:var(--sans);
+  transition:background .25s ease,color .25s ease;
+}
+.btn-copy:hover{background:rgba(201,160,92,.18);color:#F7EFDD}
+.addr-link{
+  color:var(--gold-soft);
+  border-bottom:1px dashed rgba(201,160,92,.7);
+  transition:color .25s ease,border-color .25s ease;
+}
+.addr-link:hover{color:#F7EFDD;border-bottom-color:var(--gold)}
+.map-hint{font-size:12.5px;color:var(--text-light-dim);letter-spacing:.08em}
+.contact-tip{
+  margin-top:26px;text-align:center;color:var(--text-light-dim);
+  font-size:13px;letter-spacing:.12em;
+}
+
+/* ===================== 页脚 ===================== */
+.footer{
+  background:#1A100C;color:var(--text-light-dim);
+  padding:52px 0 40px;border-top:1px solid rgba(201,160,92,.2);
+}
+.footer-compliance{
+  max-width:820px;margin:0 auto 34px;text-align:center;
+  font-size:13px;letter-spacing:.1em;line-height:2.2;
+  color:#B7A689;
+}
+.footer-compliance b{color:var(--gold-soft);font-weight:500}
+.footer-bottom{text-align:center;font-size:13px;color:#8A7B62;letter-spacing:.2em}
+
+/* ===================== 返回顶部 ===================== */
+.to-top{
+  position:fixed;right:26px;bottom:30px;z-index:90;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--red);border:1px solid var(--gold);color:var(--gold-soft);
+  cursor:pointer;display:grid;place-items:center;
+  opacity:0;pointer-events:none;transform:translateY(12px);
+  transition:opacity .3s ease,transform .3s ease;
+  box-shadow:var(--shadow-sm);
+}
+.to-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.to-top:hover{background:var(--red-bright)}
+
+/* ===================== Toast ===================== */
+.toast{
+  position:fixed;left:50%;bottom:40px;transform:translateX(-50%) translateY(20px);
+  background:rgba(28,18,13,.95);color:var(--gold-soft);
+  border:1px solid var(--gold);border-radius:10px;
+  padding:11px 26px;font-size:14px;letter-spacing:.15em;
+  opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease;z-index:200;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ===================== 响应式 ===================== */
+@media (max-width:960px){
+  .product-grid{grid-template-columns:1fr 1fr;gap:20px}
+  .product-grid .product-card:last-child{grid-column:1/-1;max-width:480px;margin-inline:auto;width:100%}
+}
+@media (max-width:860px){
+  .nav-links{gap:20px}
+  .nav-links a{font-size:14px;letter-spacing:.12em}
+  .about-grid{grid-template-columns:1fr 1fr}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .hero-seal{display:none}
+}
+@media (max-width:640px){
+  .section{padding:72px 0}
+  .nav-links{gap:10px}
+  .nav-links a{font-size:13px;letter-spacing:.08em;padding:4px 1px}
+  .brand-seal{width:36px;height:36px;font-size:18px}
+  .brand-name{font-size:16px;letter-spacing:.1em}
+  .brand-name small{font-size:10px;letter-spacing:.18em}
+  .about-grid{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr}
+  .product-grid{grid-template-columns:1fr}
+  .product-grid .product-card:last-child{max-width:none}
+  .contact-box{padding:34px 22px}
+  .contact-row{flex-direction:column;align-items:flex-start;gap:10px}
+  .hero-acts .btn-seal{width:100%;justify-content:center}
+  .to-top{right:18px;bottom:22px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== 导航 ===================== -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#top" aria-label="回到首页">
+      <span class="brand-seal">商</span>
+      <span class="brand-name">喜杰商行<small>烟酒槟榔 · 综合商行</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">关于我们</a>
+      <a href="#products">主营项目</a>
+      <a href="#features">经营优势</a>
+      <a href="#contact">联系我们</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===================== Hero ===================== -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-veil" aria-hidden="true"></div>
+    <div class="hero-seal" aria-hidden="true">诚信经营</div>
+    <div class="container hero-inner">
+      <p class="hero-top">喜杰商行 · 诚待八方客</p>
+      <h1 class="hero-title">烟酒槟榔<br><em>一站购齐</em></h1>
+      <p class="hero-sub">正品渠道 · 明码实价 · 批发零售皆宜<br>老店口碑，欢迎进店或来电咨询</p>
+      <div class="hero-acts">
+        <a class="btn-seal" href="#products">浏览主营项目</a>
+        <a class="btn-seal ghost" href="#contact">联系我们</a>
+      </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true"><span>下滑浏览</span><i></i></div>
+  </section>
+
+  <!-- ===================== 关于我们 ===================== -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="sec-head">
+        <span class="sec-tag">关于商行</span>
+        <h2 class="sec-title">老味道 · 真品质 · 实在价</h2>
+        <p class="sec-sub">把烟、酒、槟榔这几样老主顾的日常，踏踏实实做好</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-num">三大品类</div>
+          <h3>烟 · 酒 · 槟榔</h3>
+          <p>主营项目集中，专而精，货架上的每一样都用心把关</p>
+        </div>
+        <div class="about-card">
+          <div class="about-num">正品渠道</div>
+          <h3>正规进货</h3>
+          <p>坚持正规渠道进货，明码标价，买得放心、用得安心</p>
+        </div>
+        <div class="about-card">
+          <div class="about-num">批发零售</div>
+          <h3>灵活选购</h3>
+          <p>散客零售、批量批发均可，来店、来电、微信都能联系</p>
+        </div>
+      </div>
+      <p class="about-para">
+        喜杰商行是一家以<strong>烟、酒、槟榔</strong>为主营的综合商行。货真价实、童叟无欺是我们的本分：
+        不卖假货、不虚标价，老主顾们口口相传，是商行最看重的招牌。
+        无论是日常自用、宴请待客，还是节庆送礼，欢迎到店选购。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== 主营项目 ===================== -->
+  <section class="section products" id="products">
+    <div class="container">
+      <div class="sec-head">
+        <span class="sec-tag">主营项目</span>
+        <h2 class="sec-title light">烟 · 酒 · 槟榔</h2>
+        <p class="sec-sub light">三大品类，货真价实，欢迎到店比价选购</p>
+      </div>
+      <div class="product-grid">
+
+        <article class="product-card">
+          <div class="product-fig">
+            <span class="fig-tag">品类 壹</span>
+            <div class="fig-glyph">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <rect x="2.5" y="8.5" width="13" height="7" rx="1"/>
+                <rect x="15.5" y="8.5" width="3.2" height="7" rx=".6" fill="currentColor" stroke="none"/>
+                <path d="M2.5 12h13" opacity=".45"/>
+              </svg>
+              <span>烟</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>卷烟</h3>
+            <p class="sub">正品渠道 · 品种齐全</p>
+            <p>正规渠道进货，各档次卷烟齐全，单包、整条均可选购，明码标价。</p>
+            <div class="product-tags">
+              <span>正品保障</span><span>单包整条</span><span>价格透明</span>
+            </div>
+            <p class="product-note">温馨提示：吸烟有害健康，请勿在禁烟场所吸烟。</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-fig">
+            <span class="fig-tag">品类 贰</span>
+            <div class="fig-glyph">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M9 2.8h6M10 2.8v5.4l-3 9.2A2.6 2.6 0 0 0 9.5 21h5a2.6 2.6 0 0 0 2.5-3.6l-3-9.2V2.8"/>
+                <path d="M9.6 14.2h4.8" opacity=".5"/>
+              </svg>
+              <span>酒</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>酒水</h3>
+            <p class="sub">白酒 · 啤酒 · 红酒 · 洋酒</p>
+            <p>自饮、宴请、送礼各场景的酒水都能配齐，价格透明，欢迎比价。</p>
+            <div class="product-tags">
+              <span>品类齐全</span><span>价格透明</span><span>送礼好选</span>
+            </div>
+            <p class="product-note">温馨提示：适量饮酒，请勿酒后驾车。</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-fig">
+            <span class="fig-tag">品类 叁</span>
+            <div class="fig-glyph">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <ellipse cx="12" cy="12.2" rx="7.4" ry="9"/>
+                <path d="M12 7.2a5.4 5.4 0 0 1 0 10"/>
+                <path d="M9.4 9.6c1.7.9 3.5.9 5.2 0" opacity=".55"/>
+              </svg>
+              <span>槟榔</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>槟榔</h3>
+            <p class="sub">精选干果 · 原果直供</p>
+            <p>精选槟榔干果，颗粒饱满、规格齐全，支持零售与批量批发。</p>
+            <div class="product-tags">
+              <span>新鲜供应</span><span>规格齐全</span><span>批发零售</span>
+            </div>
+            <p class="product-note">温馨提示：槟榔制品请适量食用。</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 经营优势 ===================== -->
+  <section class="section features" id="features">
+    <div class="container">
+      <div class="sec-head">
+        <span class="sec-tag">经营优势</span>
+        <h2 class="sec-title">为什么选择我们</h2>
+        <p class="sec-sub">把每一件小事做扎实，是商行最朴素的生意经</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-item">
+          <span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 2.8 19 5.5v5.6c0 4.4-3 8-7 9.6-4-1.6-7-5.2-7-9.6V5.5L12 2.8Z"/><path d="m8.8 11.8 2.3 2.3 4.2-4.4"/></svg></span>
+          <div><h3>正品保障</h3><p>坚持正规渠道进货，不卖假货，是本店的第一条规矩。</p></div>
+        </div>
+        <div class="feat-item">
+          <span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 3.5h9.6L21 11l-9.3 9.3-7.7-7.7V3.5Z"/><circle cx="9.4" cy="9" r="1.8"/></svg></span>
+          <div><h3>明码实价</h3><p>价格透明、童叟无欺，不虚标、不宰客。</p></div>
+        </div>
+        <div class="feat-item">
+          <span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1"/><rect x="13.5" y="3.5" width="7" height="7" rx="1"/><rect x="3.5" y="13.5" width="7" height="7" rx="1"/><rect x="13.5" y="13.5" width="7" height="7" rx="1"/></svg></span>
+          <div><h3>品类齐全</h3><p>烟、酒、槟榔一站购齐，省去东奔西跑。</p></div>
+        </div>
+        <div class="feat-item">
+          <span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 5h9v11H4zM13 9h4.5L21 12.6V16h-8z"/><path d="M7 19.5a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM17 19.5a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z"/></svg></span>
+          <div><h3>批发零售</h3><p>散客零售、批量批发均可，量大另有商议。</p></div>
+        </div>
+        <div class="feat-item">
+          <span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="m8.2 12 2.5 2.5 5.3-5.4"/></svg></span>
+          <div><h3>诚信经营</h3><p>老主顾口口相传，口碑就是商行最看重的招牌。</p></div>
+        </div>
+        <div class="feat-item">
+          <span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 6.5h12v9H3zM15 9h3.4L21 12.2V15.5h-6z"/><circle cx="6.8" cy="18" r="1.7"/><circle cx="17.2" cy="18" r="1.7"/></svg></span>
+          <div><h3>送货上门</h3><p>附近区域可电话、微信预约送货，方便老主顾。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 联系我们 ===================== -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="sec-head">
+        <span class="sec-tag">联系我们</span>
+        <h2 class="sec-title light">欢迎到店 · 来电咨询</h2>
+        <p class="sec-sub light">电话、微信欢迎随时联系 · 地图搜「喜杰商行」即可导航到店</p>
+      </div>
+      <div class="contact-box">
+        <!-- 占位：营业时间，请替换为真实时间 -->
+        <div class="contact-row">
+          <span class="contact-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path d="M12 7.2V12l3.2 2"/></svg>
+            营业时间
+          </span>
+          <span class="contact-val">每日 08:00 — 22:00</span>
+        </div>
+        <!-- 门店地址 -->
+        <div class="contact-row">
+          <span class="contact-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s-6.6-5.4-6.6-10.2a6.6 6.6 0 0 1 13.2 0C18.6 15.6 12 21 12 21Z"/><circle cx="12" cy="10.6" r="2.4"/></svg>
+            门店地址
+          </span>
+          <span class="contact-val">广东省东莞市大朗镇竹山路喜杰商行</span>
+        </div>
+        <!-- 地图导航：点击地址文字跳转高德地图，定位并弹出店铺标注 -->
+        <div class="contact-row">
+          <span class="contact-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 20 3.5 5.2 20 11l-6.6 1.7L9 20Z"/><path d="m13.4 12.7-2.2 2.1.6-3.2 6.3-3.4"/></svg>
+            地图导航
+          </span>
+          <span class="contact-val">
+            <a class="addr-link" href="https://uri.amap.com/search?keyword=%E4%B8%9C%E8%8E%9E%E5%B8%82%E5%A4%A7%E6%9C%97%E9%95%87%E5%96%9C%E6%9D%B0%E5%95%86%E8%A1%8C" target="_blank" rel="noopener">东莞市大朗镇喜杰商行</a>
+            <span class="map-hint">点地址进入高德导航</span>
+          </span>
+        </div>
+        <!-- 联系电话 -->
+        <div class="contact-row">
+          <span class="contact-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5.5 4h3.2l1.4 3.6-1.8 1.5a12.5 12.5 0 0 0 6.6 6.6l1.5-1.8 3.6 1.4v3.2a2 2 0 0 1-2.1 2A16.5 16.5 0 0 1 3.5 6.1 2 2 0 0 1 5.5 4Z"/></svg>
+            联系电话
+          </span>
+          <span class="contact-val">13537426732 <button class="btn-copy" data-copy="13537426732">复制</button></span>
+        </div>
+        <!-- 微信号 -->
+        <div class="contact-row">
+          <span class="contact-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9.2 5.5c-3.7 0-6.7 2.4-6.7 5.4 0 1.7 1 3.2 2.5 4.2l-.7 2.3 2.6-1.3c.7.2 1.5.3 2.3.3"/><path d="M14.7 9.4c3.3 0 5.9 2 5.9 4.6 0 1.5-.9 2.8-2.2 3.7l.6 2-2.3-1.2a8 8 0 0 1-1.9.2"/></svg>
+            微信号
+          </span>
+          <span class="contact-val">YL13537426732 <button class="btn-copy" data-copy="YL13537426732">复制</button></span>
+        </div>
+        <p class="contact-tip">来店前可先来电确认在店情况，减少跑空</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== 页脚 ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-compliance">
+      <p><b>健康与合规提示</b></p>
+      <p>吸烟有害健康，戒烟可减少对健康的危害 · 未成年人禁止购买烟、酒及槟榔<br>
+      适量饮酒，请勿酒后驾车 · 槟榔制品请适量食用 · 请遵守当地控烟与禁售规定</p>
+    </div>
+    <p class="footer-bottom">© 2026 喜杰商行 · 烟酒槟榔综合商行</p>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="返回顶部">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
+</button>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  var navLinks=document.getElementById('navLinks');
+  var toTop=document.getElementById('toTop');
+  var toast=document.getElementById('toast');
+  var toastTimer=null;
+
+  /* 滚动：导航背景 + 返回顶部 */
+  function onScroll(){
+    var y=window.scrollY||document.documentElement.scrollTop;
+    nav.classList.toggle('scrolled',y>40);
+    toTop.classList.toggle('show',y>560);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+
+  /* 滚动高亮当前区块 */
+  var secs=Array.prototype.map.call(document.querySelectorAll('main section[id]'),function(s){return s});
+  var links=Array.prototype.slice.call(navLinks.querySelectorAll('a'));
+  function spy(){
+    var pos=window.scrollY+120;
+    var cur=null;
+    secs.forEach(function(s){
+      if(s.offsetTop<=pos) cur=s.id;
+    });
+    links.forEach(function(a){
+      a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+    });
+  }
+  window.addEventListener('scroll',spy,{passive:true});
+  spy();
+
+  /* 复制 + Toast */
+  function showToast(msg){
+    toast.textContent=msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(function(){toast.classList.remove('show')},2200);
+  }
+  document.querySelectorAll('.btn-copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var val=btn.getAttribute('data-copy')||'';
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(val).then(function(){
+          showToast('已复制：'+val);
+        },function(){fallbackCopy(btn,val);});
+      }else{
+        fallbackCopy(btn,val);
+      }
+    });
+  });
+  function fallbackCopy(btn,val){
+    var ta=document.createElement('textarea');
+    ta.value=val;
+    ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);
+    ta.select();
+    try{document.execCommand('copy');showToast('已复制：'+val);}
+    catch(err){showToast('复制失败，请手动复制');}
+    document.body.removeChild(ta);
+  }
+})();
+</script>
+</body>
+</html>
